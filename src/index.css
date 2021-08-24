@@ -1,13 +1,115 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*  */
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  padding: 0 25px;
+  margin-bottom: 100px;
+}
+
+.post {
+  padding: 25px;
+  margin: 25px 0;
+  border: 1px dashed white;
+}
+
+.posts-container {
+  width: 80vw;
+  max-width: 800px;
+}
+
+.filter-container {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  max-width: 800px;
+}
+
+input {
+  width: 80vw;
+  max-width: 800px;
+  padding: 10px;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+h1 {
+  margin: 25px 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 590px) {
+  h1 {
+    font-size: 1.6rem;
+    margin: 25px 0;
+  }
+}
+
+/* Loader */
+
+.loader {
+  opacity: 0;
+  opacity: 1;
+  display: flex;
+  transition: opacity 0.3s ease-in;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  padding-bottom: 100px;
+}
+
+.loader.show {
+  opacity: 1;
+}
+
+.circle {
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 5px;
+  animation: bounce 0.5s ease-in infinite;
+}
+
+.circle:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+.circle:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
