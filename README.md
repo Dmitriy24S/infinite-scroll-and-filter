@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# Infinite Scroll & Filter
+
+Page with infinite scroll of fetched data with filter. Created with React, CSS.
+
+[Live Demo](https://dmitriy24s.github.io/infinite-scroll-and-filter/) 👈
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
