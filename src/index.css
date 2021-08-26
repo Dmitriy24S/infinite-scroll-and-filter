@@ -77,9 +77,12 @@ h1 {
   display: flex;
   transition: opacity 0.3s ease-in;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 100px;
-  padding-bottom: 100px;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  /* bottom: 50px; */
+  bottom: 45px;
+  left: 50%;
 }
 
 .loader.show {
@@ -112,4 +115,10 @@ h1 {
   50% {
     transform: translateY(-10px);
   }
+}
+
+.scrollBtn {
+  position: fixed;
+  right: 30px;
+  bottom: 150px;
 }
