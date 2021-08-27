@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
+import { IoIosArrowUp } from "react-icons/io";
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [filteredArr1, setFilteredArr1] = useState([]);
+  const [value, setValue] = useState("");
   const [loading, setloading] = useState(false);
 
   let limit = 5;
   let page = 1;
 
+  // Initial fetch of first posts
   const fetchPosts = async () => {
     setloading(true);
     const response = await fetch(
@@ -17,15 +21,37 @@ function App() {
     setloading(false);
   };
 
-  // Initial fetch of first posts
   useEffect(() => {
     fetchPosts();
   }, []);
 
+  // Filter posts by input
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    filterPosts();
+    var regex = /^\s+$/;
+    console.log(value.match(regex));
+  };
+
+  const filterPosts = () => {
+    // If no empty string in input then filter input text
+    var regex = /^\s+$/;
+    if (value.match(regex) === null) {
+      let filteredArr = posts.filter(
+        (post) =>
+          post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1
+      );
+      setFilteredArr1(filteredArr);
+    }
+  };
+
   // Pass fetched posts into filtered array
   useEffect(() => {
     setFilteredArr1(posts);
-  }, [posts]);
+    if (value !== "") {
+      filterPosts();
+    }
+  }, [posts, value]);
 
   // Fetch on scroll to bottom
   const loadMorePosts = () => {
@@ -55,45 +81,23 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const loader = (
-    <div className="loader">
-      <div className="circle"></div>
-      <div className="circle"></div>
-      <div className="circle"></div>
-    </div>
-  );
-
-  // Filter posts by input
-  const [value, setValue] = useState("");
-  const [filteredArr1, setFilteredArr1] = useState([]);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    filterPosts();
-    var regex = /^\s+$/;
-    console.log(value.match(regex));
-  };
-
-  const filterPosts = () => {
-    // If no empty string in input then filter input text
-    var regex = /^\s+$/;
-    if (value.match(regex) === null) {
-      let filteredArr = posts.filter(
-        (post) =>
-          post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1
-      );
-      setFilteredArr1(filteredArr);
-    }
-  };
-
   // Scroll to top
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollBtn = (
-    <div className="scrollBtn" onClick={scrollTop}>
-      to top
+    <button className="scrollBtn" onClick={scrollTop}>
+      <IoIosArrowUp /> Back to Top
+    </button>
+  );
+
+  // Loader
+  const loader = (
+    <div className="loader">
+      <div className="circle"></div>
+      <div className="circle"></div>
+      <div className="circle"></div>
     </div>
   );
 
@@ -119,8 +123,8 @@ function App() {
           );
         })}
       </div>
-      {scrollBtn}
       {loading && loader}
+      {scrollBtn}
     </div>
   );
 }

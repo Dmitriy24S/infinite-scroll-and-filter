@@ -62,13 +62,6 @@ h1 {
   justify-content: center;
 }
 
-@media (max-width: 590px) {
-  h1 {
-    font-size: 1.6rem;
-    margin: 25px 0;
-  }
-}
-
 /* Loader */
 
 .loader {
@@ -80,7 +73,6 @@ h1 {
   margin: 0;
   padding: 0;
   position: fixed;
-  /* bottom: 50px; */
   bottom: 45px;
   left: 50%;
 }
@@ -119,6 +111,35 @@ h1 {
 
 .scrollBtn {
   position: fixed;
-  right: 30px;
-  bottom: 150px;
+  margin-left: 10px;
+  right: 60px;
+  width: 145px;
+  bottom: 40px;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 6px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 690px) {
+  h1 {
+    font-size: 1.6rem;
+    margin: 25px 0;
+  }
+  .scrollBtn3 {
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 1130px) {
+  .scrollBtn3 {
+    right: 10px;
+  }
 }
