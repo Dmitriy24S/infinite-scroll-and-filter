@@ -3,7 +3,7 @@ import { IoIosArrowUp } from "react-icons/io";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [filteredArr1, setFilteredArr1] = useState([]);
+  const [filteredArr, setFilteredArr] = useState([]);
   const [value, setValue] = useState("");
   const [loading, setloading] = useState(false);
 
@@ -37,17 +37,17 @@ function App() {
     // If no empty string in input then filter input text
     var regex = /^\s+$/;
     if (value.match(regex) === null) {
-      let filteredArr = posts.filter(
+      let filteredPosts = posts.filter(
         (post) =>
           post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1
       );
-      setFilteredArr1(filteredArr);
+      setFilteredArr(filteredPosts);
     }
   };
 
   // Pass fetched posts into filtered array
   useEffect(() => {
-    setFilteredArr1(posts);
+    setFilteredArr(posts);
     if (value !== "") {
       filterPosts();
     }
@@ -113,7 +113,7 @@ function App() {
         />
       </div>
       <div className="posts-container">
-        {filteredArr1.map((post) => {
+        {filteredArr.map((post) => {
           return (
             <article key={post.id} className="post">
               <span className="post-number">{post.id}</span>
