@@ -25,6 +25,11 @@ function App() {
     fetchPosts();
   }, []);
 
+  // Higlight searched input in posts
+  const createMakrup = (html) => {
+    return { __html: html };
+  };
+
   // Filter posts by input
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -37,10 +42,23 @@ function App() {
     // If no empty string in input then filter input text
     var regex = /^\s+$/;
     if (value.match(regex) === null) {
-      let filteredPosts = posts.filter(
-        (post) =>
-          post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1
-      );
+      let filteredPosts = posts
+        .filter(
+          (post) =>
+            post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1
+        )
+        .map((item) => {
+          const regexp = new RegExp(value, "g");
+          console.log(item.title.indexOf(value) > -1);
+          if (item.title.indexOf(value) > -1 || item.body.indexOf(value) > -1) {
+            return {
+              ...item,
+              title: item.title.replace(regexp, `<mark>${value}</mark>`),
+              body: item.body.replace(regexp, `<mark>${value}</mark>`),
+            };
+          }
+          return item;
+        });
       setFilteredArr(filteredPosts);
     }
   };
@@ -117,8 +135,8 @@ function App() {
           return (
             <article key={post.id} className="post">
               <span className="post-number">{post.id}</span>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
+              <h3 dangerouslySetInnerHTML={createMakrup(post.title)}></h3>
+              <p dangerouslySetInnerHTML={createMakrup(post.body)}></p>
             </article>
           );
         })}
