@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowUp } from "react-icons/io";
+import Post from "./components/Post";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -122,22 +124,16 @@ function App() {
   return (
     <div className="App">
       <h1>Infinite Scroll & Filter</h1>
-      <div className="filter-container">
-        <input
-          type="text"
-          placeholder="filter posts..."
-          value={value}
-          onChange={handleChange}
-        />
-      </div>
+      <SearchBar value={value} handleChange={handleChange} />
       <div className="posts-container">
         {filteredArr.map((post) => {
           return (
-            <article key={post.id} className="post">
-              <span className="post-number">{post.id}</span>
-              <h3 dangerouslySetInnerHTML={createMakrup(post.title)}></h3>
-              <p dangerouslySetInnerHTML={createMakrup(post.body)}></p>
-            </article>
+            <Post
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              body={post.body}
+            />
           );
         })}
       </div>
