@@ -37,7 +37,7 @@ function App() {
     setValue(e.target.value);
     filterPosts();
     var regex = /^\s+$/;
-    console.log(value.match(regex));
+    // console.log(value.match(regex));
   };
 
   const filterPosts = () => {
@@ -45,13 +45,10 @@ function App() {
     var regex = /^\s+$/;
     if (value.match(regex) === null) {
       let filteredPosts = posts
-        .filter(
-          (post) =>
-            post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1
-        )
+        .filter((post) => post.title.indexOf(value) > -1 || post.body.indexOf(value) > -1)
         .map((item) => {
           const regexp = new RegExp(value, "g");
-          console.log(item.title.indexOf(value) > -1);
+          // console.log(item.title.indexOf(value) > -1);
           if (item.title.indexOf(value) > -1 || item.body.indexOf(value) > -1) {
             return {
               ...item,
@@ -133,6 +130,7 @@ function App() {
               id={post.id}
               title={post.title}
               body={post.body}
+              createMakrup={createMakrup}
             />
           );
         })}
