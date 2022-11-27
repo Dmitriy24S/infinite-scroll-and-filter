@@ -1,5 +1,7 @@
 # Infinite Scroll & Filter
 
+![Design preview for Infinite Scroll & Filter](./design-preview/design-preview.png)
+
 Page with infinite scroll of fetched data with filter. Created with React, CSS and JSONPlaceholder API.
 
 [Live Demo](https://dmitriy24s.github.io/infinite-scroll-and-filter/) 👈
